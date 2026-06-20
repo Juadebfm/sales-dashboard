@@ -57,9 +57,9 @@ export const orders = [
     amount: "₦12,500",
     status: "Pending",
   },
-  { id: "#1040", customer: "Grace Eze", amount: "₦93,200", status: "Paid" },
+  { id: "#1040", customer: "grace eze", amount: "₦93,200", status: "Paid" },
   { id: "#1039", customer: "Femi Akin", amount: "₦7,800", status: "Failed" },
-  { id: "#1038", customer: "Zainab Musa", amount: "₦25,400", status: "Paid" },
+  { id: "#1038", customer: "ZAINAB Musa", amount: "₦25,400", status: "Paid" },
   {
     id: "#1037",
     customer: "Chidi Nwosu",
