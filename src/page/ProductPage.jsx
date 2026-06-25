@@ -8,7 +8,7 @@ function ProductPage() {
   if (error) return <p className="text-rose-600">{error}</p>;
 
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
