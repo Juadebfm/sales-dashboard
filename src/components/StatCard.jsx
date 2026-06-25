@@ -1,11 +1,10 @@
-import React from "react";
-
-const StatCard = ({ label, value, change, Icon: icon, accent }) => {
+const StatCard = ({ label, value, change, Icon, accent }) => {
   const up = change > 0;
   return (
     <div className="bg-white rounded-2xl border border-slate-200 p-5">
       <div className="flex items-center justify-between">
         <span className="text-sm font-medium text-slate-900">{label}</span>
+        {/* Keep the prop name aligned with the JSX usage so the icon renders when stats are enabled again. */}
         <span className={`rounded-lg p-2 ${accent}`}>
           <Icon size={18} />
         </span>

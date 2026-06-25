@@ -1,28 +1,22 @@
-import React from "react";
-import Sidebar from "./components/Sidebar";
-import TopBar from "./components/TopBar";
-import RevenueChart from "./components/RevenueChart";
-import RecentOrders from "./components/RecentOrders";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
-import { useProducts } from "./context/ProductContext";
-import ProductPage from "./page/ProductPage";
 import Layout from "./components/Layout";
 import Overview from "./page/Overview";
+import OrdersPage from "./page/OrdersPage";
 import CustomerPage from "./page/CustomerPage";
 import SettingsPage from "./page/SettingsPage";
 
 const App = () => {
-  const { products } = useProducts();
-
-  console.log(products);
   return (
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Overview />} />
-        <Route path="/orders" element={<ProductPage />} />
+        {/* Show the dedicated orders screen so the route matches the sidebar label. */}
+        <Route path="/orders" element={<OrdersPage />} />
         <Route path="/customers" element={<CustomerPage />} />
         <Route path="/settings" element={<SettingsPage />} />
+        {/* Redirect unknown SPA URLs back to the dashboard instead of rendering a blank page. */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
   );

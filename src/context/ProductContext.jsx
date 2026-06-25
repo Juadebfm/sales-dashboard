@@ -1,7 +1,5 @@
-import { createContext, useContext, useEffect, useState } from "react";
-
-// First initialize the createContext method
-const ProductContext = createContext();
+import { useEffect, useState } from "react";
+import { ProductContext } from "./product-context";
 
 // Secondly, create the context function (business logic)
 export function ProductProvider({ children }) {
@@ -14,12 +12,16 @@ export function ProductProvider({ children }) {
     async function loadProducts() {
       try {
         const res = await fetch("https://fakestoreapi.com/products");
+        // Surface non-200 responses as real errors instead of treating them like valid data.
+        if (!res.ok) {
+          throw new Error("Failed to load products");
+        }
+
         const data = await res.json();
         setProducts(data); // products = data
-
-        console.log(data);
       } catch (err) {
-        setError(err, "Failed to load products");
+        // Store a plain message so our pages can render the error safely.
+        setError(err.message || "Failed to load products");
       } finally {
         setLoading(false);
       }
@@ -32,9 +34,4 @@ export function ProductProvider({ children }) {
       {children}
     </ProductContext.Provider>
   );
-}
-
-// custom hook
-export function useProducts() {
-  return useContext(ProductContext);
 }

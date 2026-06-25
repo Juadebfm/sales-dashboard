@@ -1,8 +1,12 @@
-import React from "react";
-import { useProducts } from "../context/ProductContext";
+import { useProducts } from "../context/useProducts";
 
 const CustomerPage = () => {
   const { products, error, loading } = useProducts();
+
+  // Match the same loading/error flow used on the products screen for a more consistent SPA.
+  if (loading) return <p className="text-slate-600">Loading customers...</p>;
+  if (error) return <p className="text-rose-600">{error}</p>;
+
   return (
     <div className="text-2xl text-slate-600">
       {products.map((product) => (
